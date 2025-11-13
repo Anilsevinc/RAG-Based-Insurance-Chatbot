@@ -1,6 +1,6 @@
 
 
-# Insurance Chatbot RAG
+# RAG-based Insurance Chatbot Assistant
 
 A **Retrieval-Augmented Generation (RAG)** based insurance assistant chatbot built with **Python**, **LangChain**, **OpenAI GPT**, and **Gradio**.  
 This assistant helps users with insurance queries including policies, claims, payments, and FAQs.
