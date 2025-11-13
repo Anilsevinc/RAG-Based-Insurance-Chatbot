@@ -1,5 +1,5 @@
 
-````markdown
+
 # Insurance Chatbot RAG
 
 A **Retrieval-Augmented Generation (RAG)** based insurance assistant chatbot built with **Python**, **LangChain**, **OpenAI GPT**, and **Gradio**.  
