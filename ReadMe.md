@@ -100,11 +100,6 @@ INSURANCE_CHATBOT_RAG/
   * Sample question buttons
   * Send button & Enter key submission
 * Responsive layout for desktop and mobile
-* Footer with copyright:
-
-```text
-© 2025 Anıl Sevinç. All rights reserved.
-```
 
 ---
 
