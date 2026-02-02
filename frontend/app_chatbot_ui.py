@@ -74,7 +74,7 @@ def clear_chat():
     return None, ""
 
 
-# ChatGPT-style CSS (SON GÜNCELLEME)
+
 custom_css = """
 /* Global styling - Koyu Mor Arka Plan / Lacivert Konteyner Tema */
 :root {
