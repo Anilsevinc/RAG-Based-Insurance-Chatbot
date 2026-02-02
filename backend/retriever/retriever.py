@@ -8,8 +8,8 @@ import os
 from pathlib import Path
 from backend.db.db_connector import get_faq_data
 
-# Proje kökü
-BASE_DIR = Path(__file__).resolve().parent      # Örn: backend/db
+
+BASE_DIR = Path(__file__).resolve().parent     
 PROJECT_DIR = BASE_DIR.parent.parent 
 
 load_dotenv(dotenv_path=PROJECT_DIR / ".env")
@@ -32,7 +32,7 @@ def create_retriever():
     # Classic RetrievalQA chain without memory
     qa_chain = RetrievalQA.from_chain_type(
         llm=llm,
-        chain_type="stuff",              # "stuff", "map_reduce" etc. can be chosen
+        chain_type="stuff",              
         retriever=vectorstore.as_retriever(),
         return_source_documents=False
     )
