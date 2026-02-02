@@ -5,7 +5,7 @@ import os
 from dotenv import load_dotenv
 from pathlib import Path
 
-# Proje kökü
+
 PROJECT_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(dotenv_path=PROJECT_DIR / ".env")
 
@@ -13,10 +13,10 @@ openai_api_key = os.getenv("OPENAI_API_KEY")
 if openai_api_key is None:
     raise ValueError("OPENAI_API_KEY not set in .env")
 
-# LLM
+
 llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0, openai_api_key=openai_api_key)
 
-# Database-specific prompt
+
 intent_prompt = PromptTemplate(
     input_variables=["question"],
     template="""
@@ -38,7 +38,7 @@ Intent:
 """
 )
 
-# Eski versiyon için LLMChain kullanıyoruz
+
 intent_chain = LLMChain(llm=llm, prompt=intent_prompt)
 
 def extract_intent(user_question):
