@@ -3,18 +3,15 @@ from pathlib import Path
 from dotenv import load_dotenv
 import sys
 
-# Project root
+
 PROJECT_DIR = Path(__file__).resolve().parent.parent
 sys.path.append(str(PROJECT_DIR))
 load_dotenv(dotenv_path=PROJECT_DIR / ".env")
 
-# ÖNEMLİ: Bu satır, Gradio arayüzünün doğru çalışması için gereklidir.
-# Eğer 'backend.chatbot' modülünüz Gradio'nun çalıştığı ortamda mevcut değilse,
-# bu satır hata verecektir. Test amaçlı placeholder fonksiyonu yorum satırına alınmıştır.
+
 try:
     from backend.chatbot import handle_user_query
 except ImportError:
-    # Eğer backend.chatbot import edilemezse, geçici bir fonksiyon kullan
     def handle_user_query(query):
         """Placeholder for the actual backend function"""
         if "deductible" in query.lower():
@@ -29,7 +26,7 @@ except ImportError:
             return f"I received your question: '{query}'. How else can I assist you with your insurance inquiries?"
 
 
-# Örnek sorular (Yeni versiyondan alındı)
+
 SAMPLE_QUESTIONS = [
     "What is a deductible?",
     "How can I file a claim?",
@@ -39,7 +36,7 @@ SAMPLE_QUESTIONS = [
 ]
 
 
-# İŞLEVSELLİK GÜNCELLEMESİ: sample_questions_container gizleme kaldırıldı.
+
 def gradio_chat(user_message, chat_history):
     """Handle user message and return bot response"""
     if not user_message or not user_message.strip():
@@ -70,7 +67,6 @@ def click_sample_question(question, chat_history):
 
 def clear_chat():
     """Clear chat history"""
-    # Yeni fonksiyonda message_input'u da temizlemek için 2 çıktı döndürülür.
     return None, ""
 
 
@@ -349,7 +345,7 @@ footer {
 # Create Gradio interface
 with gr.Blocks(css=custom_css, title="Tenacitics") as demo:
     
-    # Body Container (Merkezi görünüm ve container istekleri için)
+   
     with gr.Column(elem_classes="main-body-container"):
         
         # Header
@@ -368,32 +364,30 @@ with gr.Blocks(css=custom_css, title="Tenacitics") as demo:
                 height="100%"
             )
             
-            # Welcome screen with sample questions
-            # Not: sample_questions_container'ı visibility olarak kontrol etmediğiniz için, 
-            # burayı hep görünür tutan bir yapı kullanıyorum.
+           
             with gr.Column(visible=True, elem_classes="welcome-container") as sample_questions_container:
                 gr.HTML('<h1 class="welcome-title">How can I help you today?</h1>')
                 
                 sample_btns = []
                 with gr.Column(elem_classes="sample-grid"):
                     
-                    # 5 butonu 2 satıra bölmek için dinamik yapı
+                   
                     questions_row_1 = SAMPLE_QUESTIONS[:3]
                     questions_row_2 = SAMPLE_QUESTIONS[3:]
 
-                    # İlk satır (3 buton)
+                    
                     with gr.Row():
                         for q in questions_row_1:
                             btn = gr.Button(q, elem_classes="sample-card")
                             sample_btns.append(btn)
                     
-                    # İkinci satır (2 buton)
+                    
                     with gr.Row():
                         for q in questions_row_2:
                             btn = gr.Button(q, elem_classes="sample-card")
                             sample_btns.append(btn)
         
-        # Input area
+       
         with gr.Column(elem_classes="input-container"):
             with gr.Row(elem_classes="input-wrapper"):
                 message_input = gr.Textbox(
@@ -419,16 +413,15 @@ with gr.Blocks(css=custom_css, title="Tenacitics") as demo:
 </div>
         """)
     
-    # Event handlers (İşlevsellik 2. koddaki gibi ayarlandı)
     
-    # Textbox Submit
+    
+    
     message_input.submit(
         gradio_chat,
         inputs=[message_input, chatbot_ui],
         outputs=[message_input, chatbot_ui], # Sadece input ve chatbot güncelleniyor
     )
     
-    # Send Button Click
     send_button.click(
         gradio_chat,
         inputs=[message_input, chatbot_ui],
