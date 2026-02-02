@@ -1,15 +1,15 @@
 import sqlite3
 from pathlib import Path
 
-# Veritabanı yolu
-BASE_DIR = Path(__file__).resolve().parent      # Örn: backend/db
-PROJECT_DIR = BASE_DIR.parent.parent            # Proje kökü
+
+BASE_DIR = Path(__file__).resolve().parent      
+PROJECT_DIR = BASE_DIR.parent.parent           
 db_path = PROJECT_DIR / "database" / "insurance.db"
 
 print("DB path:", db_path)
-print("DB exists:", db_path.exists())  # Dosya var mı kontrol
+print("DB exists:", db_path.exists()) 
 
-# Veritabanını aç ve tabloları listele
+
 try:
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
