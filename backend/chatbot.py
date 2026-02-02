@@ -67,26 +67,25 @@ Always answer in English.
 def handle_user_query(user_query, chat_history=None):
     """Main function to handle user queries, route to FAQ or SQL Agent."""
     
-    # 1️⃣ Farewell check
+
     if is_farewell_message(user_query):
         return "You're very welcome! If you have any more questions, feel free to ask. Have a great day!"
-    
-    # 2️⃣ Intent extraction
+
     intent = extract_intent(user_query)
     print(f"Detected intent: {intent}")
 
-    # 3️⃣ Determine table based on keywords or intent
+   
     faq_keywords = ["what is", "how can i", "how do i", "definition", "meaning", "how to", "what can i do"]
     lowered = user_query.strip().lower()
     if any(kw in lowered for kw in faq_keywords):
         selected_table = "FAQ"
-        print("🔁 Overridden to FAQ based on keywords.")
+        print(" Overridden to FAQ based on keywords.")
     else:
         selected_table = route_intent_to_table(intent)
 
     print(f"Routing to table: {selected_table}")
 
-    # 4️⃣ FAQ query
+    
     if selected_table == "FAQ":
         try:
             result = qa.run(user_query)
@@ -95,7 +94,7 @@ def handle_user_query(user_query, chat_history=None):
         except Exception as e:
             return f"Retriever failed: {str(e)}"
     
-    # 5️⃣ SQL query
+  
     else:
         try:
             result = get_sql_response(user_query)
