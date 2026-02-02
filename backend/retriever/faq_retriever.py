@@ -11,7 +11,7 @@ from pathlib import Path
 from backend.db.db_connector import get_faq_data
 
 # Project Root
-BASE_DIR = Path(__file__).resolve().parent      # Örn: backend/db
+BASE_DIR = Path(__file__).resolve().parent      
 PROJECT_DIR = BASE_DIR.parent.parent 
 
 load_dotenv(dotenv_path=PROJECT_DIR / ".env")
