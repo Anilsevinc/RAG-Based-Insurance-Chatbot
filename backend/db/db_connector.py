@@ -3,8 +3,8 @@ import sqlite3
 import pandas as pd
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent      # Örn: backend/db
-PROJECT_DIR = BASE_DIR.parent.parent            # Proje kökü
+BASE_DIR = Path(__file__).resolve().parent    
+PROJECT_DIR = BASE_DIR.parent.parent            
 db_path = PROJECT_DIR / "database" / "insurance.db"
 
 def connect_to_db(db_path=db_path):
