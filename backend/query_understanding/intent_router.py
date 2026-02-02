@@ -1,7 +1,5 @@
 def route_intent_to_table(intent):
-    """
-    Intent'e göre hangi tabloya yönlendirme yapılacağını belirler.
-    """
+   
     intent_table_map = {
         "Policy Inquiry": "Policies",
         "Claim Inquiry": "Claims",
